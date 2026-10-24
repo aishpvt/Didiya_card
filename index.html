@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Twenty-four years of us</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --desk:#d8c7a6; --paper:#f1e6cf; --paper2:#e9dbbd; --ink:#4a3526; --rose:#c48f8a; --olive:#76774a; --faded:#8a6f58; --line:rgba(120,90,60,.22);
+  --hand:'Caveat','Segoe Script','Bradley Hand',cursive; --type:'Special Elite','Courier New',monospace;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--desk:#2b221b}}
+:root[data-theme="dark"]{--desk:#2b221b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--hand);font-size:23px;line-height:1.35;
+  background-image:radial-gradient(rgba(0,0,0,.05) 1px,transparent 1px);background-size:5px 5px}
+main{max-width:640px;margin:0 auto;padding:28px 16px 80px}
+.page{position:relative;background:var(--paper);margin:0 0 54px;padding:38px 30px 42px 56px;
+  background-image:repeating-linear-gradient(transparent 0 33px,var(--line) 33px 34px),radial-gradient(ellipse at 20% 0,rgba(255,255,255,.35),transparent 60%),radial-gradient(ellipse at 100% 100%,rgba(150,100,50,.18),transparent 55%);
+  box-shadow:0 2px 0 rgba(0,0,0,.08),0 14px 24px -10px rgba(40,25,10,.45);border-radius:2px 6px 3px 8px}
+.page::before{content:"";position:absolute;left:34px;top:0;bottom:0;width:1px;background:rgba(196,143,138,.55)}
+.page:nth-of-type(odd){transform:rotate(-.5deg)}.page:nth-of-type(even){transform:rotate(.6deg)}
+h1,h2{font-weight:600;margin:0 0 10px;line-height:1.05}
+h1{font-size:64px;color:var(--faded)} h2{font-size:38px;color:var(--olive)}
+.date{position:absolute;top:12px;right:18px;font-family:var(--type);font-size:13px;color:var(--faded);transform:rotate(3deg)}
+.type{font-family:var(--type);font-size:15px;color:var(--faded);line-height:1.6}
+p{margin:0 0 14px}
+.fill{border-bottom:2px dotted var(--rose)}
+.note{color:var(--rose);font-size:26px;display:inline-block;transform:rotate(-2deg)}
+.olive{color:var(--olive)}
+s{text-decoration-color:var(--rose);text-decoration-thickness:2px}
+.cover{text-align:center;padding:70px 30px 60px;background-color:#8c6a52;color:#f1e6cf;
+  background-image:radial-gradient(rgba(0,0,0,.18) 1px,transparent 1px),linear-gradient(135deg,rgba(255,255,255,.1),transparent 40%);background-size:4px 4px,auto}
+.cover::before{display:none}
+.cover h1{color:#f1e6cf;font-size:72px}
+.cover .label{display:inline-block;background:var(--paper);color:var(--ink);padding:10px 22px;transform:rotate(-2deg);margin:18px 0;box-shadow:0 2px 4px rgba(0,0,0,.3)}
+.cover .type{color:#e4cfb2}
+.cover a{color:#f1e6cf}
+.tape{position:absolute;width:84px;height:24px;background:rgba(196,143,138,.55);top:-12px;left:50%;margin-left:-42px;transform:rotate(-4deg)}
+.pol{width:230px;height:290px;margin:12px auto 36px;perspective:900px;cursor:pointer;position:relative;background:none;border:0;padding:0;display:block;font:inherit;color:inherit}
+.pol .in{position:absolute;inset:0;transition:transform .7s;transform-style:preserve-3d}
+.pol.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:#f8f1e0;padding:12px 12px 0;box-shadow:0 6px 14px rgba(40,25,10,.35);text-align:left}
+.face.back{transform:rotateY(180deg);background:#efe2c4;padding:20px 16px;font-size:22px}
+.ph{height:195px;background:linear-gradient(160deg,#cdb590,#a98f6c 60%,#8d7556);filter:sepia(.4);display:flex;align-items:center;justify-content:center;text-align:center;color:#f1e6cf;font-family:var(--type);font-size:13px;padding:10px}
+.cap{margin-top:8px;font-size:23px;text-align:center}
+.pol:focus-visible{outline:3px solid var(--olive);outline-offset:6px}
+.a{transform:rotate(-4deg)}.b{transform:rotate(3deg)}.c{transform:rotate(-2deg)}
+.hint{font-family:var(--type);font-size:13px;color:var(--faded);text-align:center;margin:-18px 0 24px}
+ul.list{list-style:none;padding:0;margin:0}
+ul.list li{margin-bottom:12px;padding-left:4px}
+ul.list li small{display:block;color:var(--rose);font-size:23px;transform:rotate(-1deg);margin-left:18px}
+.checks label{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;cursor:pointer}
+.checks input{appearance:none;width:24px;height:24px;border:2px solid var(--faded);border-radius:3px;margin-top:5px;flex:none;position:relative;background:transparent}
+.checks input:checked::after{content:"✕";position:absolute;inset:-6px 0 0 3px;font-size:28px;color:var(--rose);line-height:1.1}
+.checks input:checked+span{text-decoration:line-through;text-decoration-color:var(--rose);opacity:.7}
+.checks input:focus-visible{outline:3px solid var(--olive);outline-offset:2px}
+.letter p{font-size:25px}
+.letter{background-color:var(--paper2)}
+.sig{text-align:right;font-size:34px;color:var(--faded);transform:rotate(-3deg)}
+.ps{font-size:20px;color:var(--faded)}
+.stain{position:absolute;right:22px;bottom:18px;width:64px;height:64px;border-radius:50%;border:3px solid rgba(138,111,88,.22);box-shadow:inset 0 0 0 5px rgba(138,111,88,.08);pointer-events:none}
+.wall{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px}
+.pol.sm{width:150px;height:205px;margin:10px 0 22px}.pol.sm .ph{height:125px;font-size:11px}.pol.sm .cap{font-size:20px}.pol.sm .face.back{font-size:18px;padding:14px 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:8px;margin:16px 0}
+.slip{font-family:var(--type);font-size:13px;height:38px;border:0;background:var(--paper2);color:var(--faded);box-shadow:0 1px 3px rgba(40,25,10,.35);cursor:pointer;padding:0}
+.slip.done{background:#dcc9a6;color:var(--rose);text-decoration:line-through}
+.slip:focus-visible{outline:3px solid var(--olive);outline-offset:2px}
+.reveal{background:#f8f1e0;padding:20px 22px;box-shadow:0 6px 14px rgba(40,25,10,.3);transform:rotate(-.8deg);min-height:130px;position:sticky;top:8px;z-index:2}
+.reveal .type{margin-bottom:6px}.reveal .txt{font-size:27px}
+.count{font-family:var(--type);font-size:14px;color:var(--faded)}
+.wall{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px}
+.snap{position:relative;width:170px;margin:10px 0 24px;padding:10px 10px 4px;background:#f8f1e0;box-shadow:0 6px 14px rgba(40,25,10,.35)}
+.frame{position:relative;height:170px;background:linear-gradient(160deg,#cdb590,#a98f6c 60%,#8d7556);overflow:hidden}
+.frame img{width:100%;filter:sepia(.35) saturate(.85) contrast(.95)}
+.snap figcaption{font-size:22px;text-align:center;margin-top:6px;line-height:1.1;padding-bottom:4px}
+.snap .tape{width:64px;margin-left:-32px}
+@media (max-width:480px){body{font-size:21px}.page{padding:34px 20px 38px 46px}.page::before{left:28px}h1{font-size:52px}.cover h1{font-size:58px}}
+@media (prefers-reduced-motion:reduce){.pol .in{transition:none}}
+</style>
+</head>
+<body>
+<main>
+
+<section class="page cover">
+  <div class="type">property of</div>
+  <div class="label">Didiya</div>
+  <h1>24 years of us</h1>
+  <div class="type">(although amader jonno it would be 21 years, 4 months and 14 days)</div>
+  <p style="margin-top:34px"><a href="#p1">start at the beginning ↓</a></p>
+</section>
+
+<section class="page" id="p1">
+  <span class="date">pg. 1 </span>
+  <h2>When everything I did used to annoy you</h2>
+  <p>Okay so I’ve been trying to remember the first thing I know about you, and the truth is I don’t remember a world without you in it. There’s just me and then you’re there.</p>
+  <p>Earliest thing I’ve got(shona golpo): Ma Babu coming home amake niye and toke ekta chocolate dewa koriyechhilo, and tui bhebechhili bunu tor jonno ota niye eshchhe hihi</span>.</p>
+  <button class="pol b" aria-label="Flip the photo"><span class="tape"></span><span class="in">
+    <<span class="face">
+  <img src="Didiya card/20161223_150833.jpg"
+       alt="Our oldest photo together"
+       style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+  <span class="cap">the just selfie tola shekha phase</span>
+</span>
+    <span class="face back"><span class="olive">on the back:</span><br>“<span class="fill">the shuru shuru selfie phase</span></span></span></button>
+</section>
+
+<section class="page">
+  <span class="date">pg. 2</span>
+  <h2>For the record</h2>
+  <p class="type">things I am legally obligated to remind you of:</p>
+  <ul class="list">
+    <li>The time tui amake ghor theke ber kore diti bondhu r shathe kotha bolar jonno<small>↳khushi thak jhamela kortam na</small></li>
+    <li>The time <em>I coloured tor Taj Mahal yellow.<small>↳ and complain korleo beshi jhamela korishni. I noticed. thank you.</small></li>
+    <li>Each and every trip, ghurte jawa and jhogra kora with marpit</span>.<small>↳ best days of my life, don’t tell anyone.</small></li>
+    <li>Our terrible dance routine (sheje guje mone achhe amar tolano nach dekhiyechhilam barite?)<small>↳ we were so committed. no talent. total commitment.</small></li>
+  </ul>
+</section>
+
+<section class="page">
+  <span class="date">pg. 3</span>
+  <h2>Things only you would know</h2>
+  <p>Nobody else on earth could pass this test:</p>
+  <ul class="list">
+    <li>What the look means when you stare at me across a room full of people.</li>
+    <li>Jokhon I send a random selfie and you can automatically understand amar mood kirokom</span>.</li>
+    <li>Which version of me shows up when I’m tired, and which version you’re the only one allowed to see.</li>
+    <li>Barite kon kotha ta bolte hobe ar kon kotha chepe rakhte hobe</li>
+  </ul>
+  <p class="note">you could probably write this page about me too. please don’t.</p>
+</section>
+
+<section class="page">
+  <span class="date">pg. 4</span>
+  <h2>Weird times</h2>
+  <button class="pol c" aria-label="Flip the photo"><span class="tape"></span><span class="in">
+    <<span class="face"><img src="Didiya card/Photo1188.jpg" alt="A photo from your teens" style="width:100%;height:100%;object-fit:cover;"><span class="cap">ekshathe porte bosha.</span></span>
+  <button class="pol a" aria-label="Flip the photo"><span class="tape"></span><span class="in">
+    <span class="face">
+  <img src="Didiya card/20180604_111400.jpg"
+       alt="A recent photo of you two"
+       style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+  <span class="cap">didn't we think this pose was so cool?</span>
+</span>
+</section>
+
+<section class="page letter">
+  <span class="date">late. like 1am</span>
+  <h2>The part I wouldn’t say out loud</h2>
+  <p>Ami jani amra erokom usually boli na, and toke bolte o ekhon amar ajob lagchhe. But majhe majhe seriously mone hoy, ekhon Didiya ke jiggesh korle pakka thik jinish ta ki korte hobe bole dito. Mane obhabei always hoye eshchhe amar, kichhu na janle eta jani je pakka Didiya jane amake bole debe.</p>
+  <p>You’re the person who remembers me  when I was small, and a bit awful, and still figuring everything out. Nobody else has that. When you’re around I don’t have to explain who I used to be. Je ja i boluk na keno, Didiya always janto amake.</p>
+  <p>Shobar shob boka khawar por, and even tor shathe jhogra korar por, shei kadte kadte toh ami Didiya r kachhei jabo. Cause tor shathe marpit holeo shei amake toh tui i manate parbi. Jotoi jhamela hok na keno toke merechhi bole Ma Babu amake bolchhe, but still tui amar hoye bolbi Ma Babu ke je ar raag koro na or opor. Ab bolo, erokom Didiya ki shobar bhagge ashe?</p>
+  <p>I think we both know we’re not kids anymore. Someday this will all be stories we tell badly at each other’s kitchen tables. And sometimes I just feel sad je abar kobe will we be sharing the same roof?</p>
+  <p class="sig">happy 24th.<br>— Bonu</p>
+  <p class="ps">p.s. I will deny writing any of this.</p>
+  <span class="stain"></span>
+</section>
+
+<section class="page">
+  <span class="date">pg. 5</span>
+  <h2>Then &amp; now</h2>
+  <p>I laid these out in order because I wanted to see how we got here.</p>
+  <div class="wall">
+  <figure class="snap a" style="margin-inline:0"><span class="tape"></span>
+    <div class="frame" style="height:auto;padding:0;display:block;line-height:0"><img style="position:static;height:auto" src="Didiya card\WhatsApp Image 2026-10-24 at 10.43.17 PM.jpeg" alt="Us at age 5" onerror="this.classList.add('x')"></div>
+    <figcaption>tiny menaces</figcaption></figure>
+
+  <figure class="snap b" style="margin-inline:0"><span class="tape"></span>
+    <div class="frame" style="height:auto;padding:0;display:block;line-height:0"><img style="position:static;height:auto" src="Didiya card\IMG-20260316-WA0063.jpg" alt="Us at age 10" onerror="this.classList.add('x')"></div>
+    <figcaption>peak chaos</figcaption></figure>
+
+  <figure class="snap c" style="margin-inline:0"><span class="tape"></span>
+    <div class="frame" style="height:auto;padding:0;display:block;line-height:0"><img style="position:static;height:auto" src="./Didiya card\WhatsApp Image 2026-10-24 at 11.18.55 PM.jpeg" alt="Us at age 15" onerror="this.classList.add('x')"></div>
+    <figcaption>we don’t talk enough about dancing together</figcaption></figure>
+
+  <figure class="snap a" style="margin-inline:0"><span class="tape"></span>
+    <div class="frame" style="height:auto;padding:0;display:block;line-height:0"><img style="position:static;height:auto" src="./Didiya card/WhatsApp Image 2026-10-24 at 11.27.37 PM.jpeg" alt="Us at age 20" onerror="this.classList.add('x')"></div>
+    <figcaption>somehow grown-ups</figcaption></figure>
+
+  <figure class="snap b" style="margin-inline:0"><span class="tape"></span>
+    <div class="frame" style="height:auto;padding:0;display:block;line-height:0"><img style="position:static;height:auto" src="./Didiya card/WhatsApp Image 2026-10-25 at 12.47.46 AM.jpeg" alt="Us now" onerror="this.classList.add('x')"></div>
+    <figcaption>still us</figcaption></figure>
+</div>
+</section>
+
+<section class="page" id="days">
+  <span class="date">pg. 6</span>
+  <h2>365 days, one slip each</h2>
+  <p>One for every day of the year. Open one a day, or binge them all and ignore me.</p>
+  <div class="reveal" aria-live="polite"><div class="type" id="rl">pick a slip</div><div class="txt" id="rt">they’re all small. some of them are not.</div></div>
+  <div class="grid" id="grid"></div>
+  <div class="count"><span id="cnt">0</span> / 365 opened</div>
+</section>
+
+<section class="page">
+  <span class="date">pg. last</span>
+  <h2>Still to do (together)</h2>
+  <p class="type">tick them off yourself. I’ll check later.</p>
+  <div class="checks">
+    <label><input type="checkbox"><span>A trip for only Didiya and Bonu</span></span></label>
+    <label><input type="checkbox"><span>Visit eke opor er shohor</span></label>
+    <label><input type="checkbox">Uhmm maybe something from our chhotobela to recreate?</span></span></label>
+    <label><input type="checkbox"><span>________________ (you pick)</span></label>
+  </div>
+  <p class="note" style="margin-top:22px">there’s so much more of this book left ↓</p>
+  <p style="font-size:20px" class="type">(the rest of the pages are blank on purpose.)</p>
+</section>
+
+</main>
+<script>
+(function(){
+  // Written messages cycle across the 365 days. Replace entries with your own, or add real memories.
+  var POOL = [
+  "Whatever happens today, remember that you don't have to figure everything out at once.",
+  "Even if today goes wrong, your life is not going wrong. One bad day is just one bad day.",
+  "Call me. No reason needed. I just want to hear your voice.",
+  "Go watch our old videos. I promise we were even more embarrassing than you remember.",
+  "You have survived every single day you thought you couldn't. Look at you now.",
+  "It's okay if all you did today was get through it. That counts too.",
+  "Text me whatever is on your mind. Even if it makes no sense yet.",
+  "You don't need to have your entire life figured out at 24. Or 34. Or ever, honestly.",
+  "One day, the thing you're worried about today will just be a story you tell me.",
+  "If things feel heavy, you don't have to carry them alone. I'm right here.",
+  "Take a deep breath. You have time. You are not running out of it.",
+  "Remember that little version of us? She would think we're pretty cool.",
+  "You are allowed to have bad days without turning them into bad thoughts about yourself.",
+  "If today wasn't your day, let tomorrow have a chance.",
+  "Call me and tell me everything. Start from the beginning, even if it takes two hours.",
+  "You don't have to be strong every second. You can be my baby sister sometimes.",
+  "Please don't let one mistake convince you that you're incapable of doing something.",
+  "Watch our childhood videos when you miss the old days. We are still those girls somewhere.",
+  "You have so much life left to live. Don't let one difficult chapter convince you the story is over.",
+  "Whatever you're going through, you don't have to make it sound smaller when you tell me.",
+  "I hope you give yourself the same patience you give everyone else.",
+  "Not everything that is delayed is denied. Some things take their own sweet time.",
+  "You are allowed to change your mind, change direction, and start all over again.",
+  "If you feel like you're falling behind, remember that everyone is living a different timeline.",
+  "Text me a random thought. I miss our nonsense.",
+  "You can be uncertain and still take the next step.",
+  "Even the strongest people need a little reassurance sometimes. Here's yours: you're going to be okay.",
+  "You don't need to earn rest. You deserve it simply because you're human.",
+  "Whatever happened today, come home to yourself. Eat something, drink water, and breathe.",
+  "I'm always one phone call away from listening to you complain about literally anything.",
+  "Don't measure your whole life by how this one week is going.",
+  "You are doing more than you give yourself credit for.",
+  "If it didn't work out, it doesn't mean you weren't good enough. Sometimes things just don't work out.",
+  "Remember how little we knew about life when we were younger? We're still learning, and that's okay.",
+  "I hope you never forget how many beautiful things are still waiting to happen to you.",
+  "You can be proud of yourself before you reach the finish line.",
+  "Bad days don't cancel your progress. Hard moments don't erase your growth.",
+  "You don't have to solve tomorrow tonight.",
+  "If you need to cry, cry. If you need to rant, rant. If you need silence, I'll sit with you.",
+  "Open our old photos today. Find one where we look absolutely ridiculous and send it to me.",
+  "You have made it through things you once thought would break you. Never forget that.",
+  "It's okay to take the long way around. You're still going somewhere.",
+  "Don't be so hard on yourself for being a person who is still figuring things out.",
+  "Call me even if you don't know what to say. We can figure out the words later.",
+  "Some days, progress looks like trying again. Some days, it looks like taking a break.",
+  "You are not a failure because something didn't go according to plan.",
+  "Please remember that you are loved on your productive days and your completely unproductive ones.",
+  "Whatever is bothering you right now, let's give it a little time before deciding it's the end of the world.",
+  "You don't have to make every decision perfectly. You just have to make the best one you can with what you know.",
+  "I hope you keep choosing yourself, even when it feels uncomfortable.",
+  "If you're having a rough day, imagine me telling you to stop overthinking and come eat something.",
+  "You deserve good things without having to prove that you are worthy of them.",
+  "There is no shame in needing help. Let people love you.",
+  "You can miss who you used to be and still be excited about who you're becoming.",
+  "Don't forget to celebrate the little things. They make up most of life.",
+  "If the world feels too much today, make your world smaller. Just get through the next hour.",
+  "I believe in the person you're becoming, even on the days when you don't.",
+  "You're allowed to have a dream that takes longer than you expected.",
+  "One day at a time, one decision at a time, one little step at a time.",
+  "Whatever happens, there will always be a place where you can come and be completely yourself. That's us.",
+  "Please don't confuse a difficult beginning with a hopeless future.",
+  "You don't have to be the best at something to enjoy doing it.",
+  "Sometimes the bravest thing you can do is try again after being disappointed.",
+  "Text me a dot if you don't feel like talking. I'll know you want me around.",
+  "You are more than your achievements, your job, your grades, or anyone else's opinion of you.",
+  "If a plan falls apart, we will make another one. We've got time.",
+  "Go easy on the girl who's trying her best. She deserves a little kindness.",
+  "Remember when we thought our childhood problems were the end of the world? We made it through those too.",
+  "You don't need to have a good reason to feel sad. Feelings don't always need explanations.",
+  "I hope you never settle for a life that looks good to everyone else but doesn't feel good to you.",
+  "You're allowed to outgrow things, people, places, and versions of yourself.",
+  "Call me when something good happens, too. I want to celebrate the tiny wins with you.",
+  "Even if nobody notices how hard you're trying, that doesn't make your effort any less real.",
+  "Some things will make sense later. Until then, you are allowed to just keep going.",
+  "You are not behind. You are here, and here is a perfectly good place to begin.",
+  "I hope you remember that being kind to yourself is productive, too.",
+  "If you feel lost, we don't have to find the whole way. We'll find the next step.",
+  "Not every day needs to be memorable. Some days can just be peaceful.",
+  "You can be scared and still be brave. They can exist together.",
+  "I am so glad I get to watch you grow into all the versions of yourself you'll become.",
+  "Whatever you're facing, you don't have to pretend you've got it all under control with me.",
+  "Your life can look completely different from what you imagined and still turn out beautiful.",
+  "Don't give up on yourself just because something is taking longer than you hoped.",
+  "I hope something unexpectedly lovely happens to you today.",
+  "If it all feels too much, take a break. The world can wait a little.",
+  "You are allowed to ask for reassurance. You are allowed to need a hug.",
+  "Please remember that one awkward moment is not your entire personality.",
+  "You have time to learn, time to heal, time to grow, and time to get things wrong.",
+  "Whatever you do, don't forget to have fun while you're busy building your life.",
+  "I'm rooting for you in all the little moments you think nobody sees.",
+  "You don't need to know how everything will work out to believe that it can.",
+  "Somewhere in the future, we're going to laugh about things that are stressing us out today.",
+  "You are not too late. You are not too much. You are not not enough.",
+  "If you need a reminder of how loved you are, call me. I'll give you a full presentation.",
+  "You have permission to rest without feeling guilty about everything left undone.",
+  "I hope you find the courage to go after the things you secretly really want.",
+  "A little progress is still progress. Stop dismissing the little things you do.",
+  "You don't need to turn every disappointment into a lesson immediately. Sometimes you can just be disappointed.",
+  "Watch our old videos and remember that life has always been a little chaotic for us.",
+  "You deserve friendships that feel safe, love that feels gentle, and a life that feels like yours.",
+  "If today was awful, tomorrow doesn't owe today a repeat.",
+  "I'm proud of you for the things you did that nobody else will ever know about.",
+  "You can start again on a Wednesday afternoon. You don't need a Monday or a new year.",
+  "The fact that you're still trying says something about you. Don't overlook that.",
+  "Please don't let fear make all your decisions for you.",
+  "You are allowed to choose the life that makes you happy, even if it's different from what others expected.",
+  "When you feel overwhelmed, remember that you only need to do the next thing, not everything.",
+  "Some of your best days are still ahead of you. We haven't even made all our memories yet.",
+  "Text me a picture of whatever you're doing. I like being part of your ordinary days.",
+  "You don't have to be cheerful all the time to be someone who brings happiness to others.",
+  "If you need to hear this today: you are doing okay. Even if it doesn't feel like it.",
+  "It's fine to have a plan. It's also fine if life has a different one.",
+  "You have come so far. Give yourself a moment to notice it.",
+  "You are allowed to be a beginner again, even at something you used to be good at.",
+  "There is a difference between giving up and deciding something is no longer right for you.",
+  "Whatever is meant to be figured out today, you can figure it out without being cruel to yourself.",
+  "Please keep making space for the things that make you feel alive.",
+  "You don't have to prove your worth by exhausting yourself.",
+  "If your mind is being mean to you today, borrow mine. I think you're pretty wonderful.",
+  "The people who love you want to know when you're struggling. Let them in.",
+  "You can have a beautiful life without having a perfect life.",
+  "Call me. We can discuss your problems, our problems, or absolutely nothing.",
+  "It's okay if your dreams change. You're allowed to want different things as you grow.",
+  "Don't underestimate what a little consistency can do over time.",
+  "You deserve to feel proud of yourself, not just relieved that something is finally over.",
+  "You can be grateful for what you have and still want something different.",
+  "There is no rule that says you must have everything figured out by a certain age.",
+  "Some days the win is getting out of bed and trying again. Count that win.",
+  "If something makes you happy and hurts nobody, you don't need to justify it to everyone.",
+  "I hope you learn to speak to yourself like someone you deeply love.",
+  "You don't have to carry yesterday's mistakes into today's possibilities.",
+  "You are allowed to say no without writing a whole explanation.",
+  "The future is not decided by one bad decision or one difficult season.",
+  "I hope you never stop being curious about what your life could become.",
+  "Remember that you can always come to me before you have all the answers.",
+  "You are not weak for being affected by things. You care, and that's human.",
+  "You don't have to rush through life just because everyone else looks busy.",
+  "If you feel like you're not doing enough, take a look at how far you've come.",
+  "You can be proud of your old self and still want to grow beyond her.",
+  "Let yourself have a little fun today. Life is not just a checklist.",
+  "Even when you cannot see the whole path, the next step still counts.",
+  "You don't need to be fearless. Just don't let fear have the final say every time.",
+  "Whatever you are working towards, I hope you enjoy becoming the person who gets there.",
+  "A setback is something that happened to you, not a definition of who you are.",
+  "Please remember to eat, drink water, and stop treating yourself like a machine.",
+  "If you need a pep talk, I am available for both sensible advice and unnecessary drama.",
+  "You don't have to make everyone understand your choices for those choices to be valid.",
+  "One day, you will look back at this version of yourself with so much tenderness.",
+  "You are allowed to be proud of surviving something that other people didn't even notice.",
+  "Go outside for a little while, get some fresh air, and give your brain a break.",
+  "Your worth does not fluctuate with your mood, productivity, or popularity.",
+  "It's okay to take a different route. The destination isn't the only thing that matters.",
+  "If today didn't go as planned, let it be imperfect and let yourself rest.",
+  "There is nothing embarrassing about trying hard for something you care about.",
+  "I hope you give yourself credit for how much you have learned.",
+  "Remember, we don't need to have our lives sorted out to have a good life.",
+  "You can always tell me the truth, even when the truth is messy.",
+  "The right time to begin again is whenever you're ready to take the first step.",
+  "Don't make a permanent judgement about yourself based on a temporary feeling.",
+  "You deserve people who celebrate you without making you feel like you have to earn it.",
+  "Please don't forget that you are someone's favourite person. You are mine.",
+  "You can handle difficult things without having to enjoy them.",
+  "If you are waiting for permission to take a break, consider this your permission.",
+  "I hope you let yourself be happy without waiting for everything else to be perfect.",
+  "You are still growing. Give yourself room to be unfinished.",
+  "Whatever happens, we will figure out what to do next. We don't need all the answers right now.",
+  "Call me if you need someone to remind you that the world is bigger than today's problem.",
+  "You have survived every plot twist so far. I'm interested to see what happens next.",
+  "You don't need to be in a good mood to deserve a good day.",
+  "Even when you feel ordinary, there are things about you that make life better for the people around you.",
+  "Keep the promises you make to yourself, especially the small ones.",
+  "You are allowed to feel disappointed and still have hope for what's next.",
+  "Some things take patience. Some things take courage. Some things just take a good night's sleep.",
+  "If you have been waiting for the perfect moment, start with the imperfect one you have.",
+  "You are not your worst thought about yourself.",
+  "Go find something that makes you laugh today. You take life seriously enough already.",
+  "You don't need to be available to everyone all the time. Protect your peace, too.",
+  "I hope you never forget how much possibility there is in being alive.",
+  "You can ask for help before things get really bad. You don't have to reach your limit first.",
+  "If you're having one of those days, we can watch something silly and ignore the world for a while.",
+  "It's okay to be proud of yourself even if nobody else says anything.",
+  "You can learn from a mistake without punishing yourself for making it.",
+  "Don't be afraid of taking up space in your own life.",
+  "You are allowed to want more, do less, and change your mind along the way.",
+  "I hope you keep choosing things that bring you peace, not just things that impress people.",
+  "Some chapters are difficult to read while you're living them. Keep turning the pages.",
+  "Remember when we used to imagine what growing up would be like? We are still in the middle of the story.",
+  "You are doing the best you can with what you know right now. You can learn the rest as you go.",
+  "If you need to talk, I will listen. If you need advice, I'll try. If you need distraction, I'm excellent at nonsense.",
+  "Don't let a difficult person convince you that there is something wrong with you.",
+  "You deserve to experience the good things you keep hoping for.",
+  "It's okay if your best looks different from one day to the next.",
+  "The world will not end because you took a day to breathe.",
+  "You can miss an opportunity and still find another one that fits you better.",
+  "I hope you always have the courage to leave what makes you unhappy.",
+  "You are more capable than you feel when you're scared.",
+  "Whatever you are feeling today, you don't have to feel it alone.",
+  "Sometimes things work out. Sometimes they teach us something. Sometimes we just move on. All three are okay.",
+  "Please remember that being loved is not something you have to earn by being useful.",
+  "You can have a bad morning and still have a lovely afternoon.",
+  "Text me your current obsession. I need to know what we're talking about for the next three weeks.",
+  "I hope you make decisions that your future self will thank you for, without forgetting to enjoy today.",
+  "You don't have to be perfect to be someone worth believing in.",
+  "Give yourself the same chance you would give someone you love.",
+  "One day, the things you are learning now will help you in ways you cannot imagine yet.",
+  "You are allowed to be excited about the future even if you are nervous about it.",
+  "When life feels uncertain, come back to the things you know: you are loved, you can learn, and you can begin again.",
+  "Remember that you don't have to fix every problem the moment it appears.",
+  "Your life isn't a competition. You don't have to beat anyone to be doing well.",
+  "Call me when you reach home. And then call me again if you have gossip.",
+  "You deserve to feel safe enough to rest and brave enough to grow.",
+  "Even the most confusing phase of your life will not last forever.",
+  "Please keep a little room in your schedule for doing absolutely nothing.",
+  "If something didn't happen the way you hoped, you are allowed to be sad about it before moving on.",
+  "I hope you notice the quiet ways you're becoming stronger.",
+  "You are allowed to take up space, ask questions, make mistakes, and try again.",
+  "You do not need to have everything figured out to be moving forward.",
+  "Somewhere, our younger selves are probably laughing at how seriously we take things now.",
+  "The best thing you can do today might be to stop being so hard on yourself.",
+  "If you feel alone, remember that you can always reach for me. You never have to make the first message perfect.",
+  "You have a whole life ahead of you. Don't let a difficult month make it look smaller.",
+  "Your dreams are worth taking seriously, even if you are still figuring out how to reach them.",
+  "It is okay to celebrate yourself before everything is finished.",
+  "You can be a work in progress and still be wonderful company.",
+  "Please never think that you have to hide your bad days from me to protect me.",
+  "If you need to hear it again, things can get better. Not always immediately, but they can.",
+  "You don't have to turn every hobby into a skill or every interest into a career.",
+  "I hope you find little reasons to be excited about waking up tomorrow.",
+  "You are not starting from zero. You are starting with everything you have learned.",
+  "When you feel stuck, do one small thing that moves you forward. That is enough for now.",
+  "Even if you don't feel brave today, you can still do one brave thing.",
+  "You don't need to make yourself smaller to make other people comfortable.",
+  "Life is allowed to be fun even when you have responsibilities.",
+  "Watch our old videos. Laugh at our hair, our voices, our dramatic little faces. We were doing our best.",
+  "If you're overwhelmed by the big picture, focus on the next ten minutes.",
+  "You deserve a life where you can breathe easily and be yourself.",
+  "Not every ending is a failure. Sometimes it is simply time for something new.",
+  "I hope you keep giving yourself chances instead of deciding too quickly that you cannot do something.",
+  "You are allowed to be a little selfish with your time when you need to recharge.",
+  "One difficult conversation does not define every relationship in your life.",
+  "You can forgive yourself for not knowing then what you know now.",
+  "Remember that asking for support is a form of taking care of yourself.",
+  "Your pace is your pace. You do not need to apologise for it.",
+  "If you have had a hard week, let the weekend be gentle with you.",
+  "There will always be things left to do. You are still allowed to rest tonight.",
+  "I hope you get to experience the kind of happiness that makes ordinary days feel special.",
+  "You don't have to have a five-year plan to make a good decision today.",
+  "Even when things don't work out, you still get to decide what you do next.",
+  "You are allowed to stop chasing things that cost you your peace.",
+  "Your feelings deserve attention, not criticism.",
+  "You are going to meet so many versions of yourself. I hope you are kind to all of them.",
+  "Some days you will shine. Some days you will simply show up. Both matter.",
+  "I hope you always remember that you have someone who wants to hear about the tiny details of your day.",
+  "You can be nervous about a new beginning and still be ready for it.",
+  "Please don't let one person's opinion become the whole truth about who you are.",
+  "There is no deadline for healing, learning, or becoming more comfortable in your own skin.",
+  "You can take a break without giving up on the thing you care about.",
+  "If you are struggling to see how far you have come, I will remind you.",
+  "We have made it through so many changes together. We can handle the next ones, too.",
+  "You don't need to turn every day into a productive day. Some days are for being alive.",
+  "Whatever you're facing, you can start with the smallest possible step.",
+  "You deserve to feel proud of the effort, not only the outcome.",
+  "A little uncertainty doesn't mean you are making the wrong choice.",
+  "I hope you remember to laugh at yourself sometimes. Not everything needs to be so serious.",
+  "You can be disappointed in how something went without being disappointed in who you are.",
+  "Call me if you need to hear a familiar voice. I'll make time for you.",
+  "The fact that things are difficult does not mean that you are incapable.",
+  "You are allowed to enjoy where you are while still working towards where you want to be.",
+  "When you look back, I hope you remember how many times you kept going even when it was hard.",
+  "You don't have to do everything alone just because you technically can.",
+  "Please give yourself credit for all the invisible work you do to keep yourself going.",
+  "If the day has been bad, do something small and comforting before it ends.",
+  "You have permission to outgrow the expectations that no longer fit you.",
+  "You are allowed to be happy with a simple life, an ambitious life, or something in between.",
+  "I hope you find the courage to ask for what you need instead of hoping people will guess.",
+  "Whatever happens next, it is not the end of your possibilities.",
+  "Some of the best things in life happen after plans change.",
+  "You can take your time making a decision. Urgency and importance are not always the same thing.",
+  "You are allowed to have complicated feelings about things you once wanted.",
+  "If you are feeling behind, remember how much of life happens outside anyone else's view.",
+  "I hope you learn to recognise when you need discipline and when you need kindness.",
+  "You don't have to be okay right now. You just have to take care of yourself right now.",
+  "Remember, there is no version of you that has to earn the right to call me.",
+  "Your future self is not asking you to be perfect. She is asking you to keep trying.",
+  "When everything feels uncertain, start with one thing you can control.",
+  "You are allowed to take the lesson and leave the guilt behind.",
+  "Some days will be about progress. Some days will be about recovery. Both belong in a good life.",
+  "Please don't forget the things that make you feel like yourself outside of work and responsibilities.",
+  "You can be grateful for the people who helped you and still be proud of yourself for doing the work.",
+  "If you need someone to remind you of your own strengths, I volunteer.",
+  "You don't need to know the final destination to enjoy the next part of the journey.",
+  "I hope you have more moments that make you think, 'I'm really glad I get to be here.'",
+  "You are allowed to change your definition of success as you learn more about yourself.",
+  "Don't rush through a good moment because you're worried about what comes next.",
+  "Even if today was messy, you can still end it with a little kindness towards yourself.",
+  "You can be scared of failing and still give yourself the chance to succeed.",
+  "Remember that you are a person, not a project that needs constant improvement.",
+  "If you need a reminder that you're loved, here it is: you are, endlessly and without conditions.",
+  "Your life can surprise you in good ways, too. Leave room for that.",
+  "You don't have to get it right the first time. You just have to be willing to learn.",
+  "One small act of courage today is enough to begin changing tomorrow.",
+  "I hope you keep people around who make you feel more like yourself, not less.",
+  "You are allowed to protect your energy without feeling guilty about it.",
+  "Sometimes the kindest thing you can do for yourself is to stop replaying what already happened.",
+  "There is nothing wrong with needing a little extra love today.",
+  "If you don't have the energy to explain everything, just say 'I need you.' I'll understand.",
+  "You are allowed to be a beginner at this stage of your life, too.",
+  "Please remember that your life is happening now, not only when you achieve the next thing.",
+  "You can have a wonderful future and still have days when you feel completely lost.",
+  "Whatever happens, you will not have to face every hard thing without support.",
+  "I hope you never lose the ability to find joy in small, silly things.",
+  "You have already made it through so many things you once thought you couldn't.",
+  "If today is all about surviving, let surviving be enough.",
+  "You are allowed to choose peace over proving a point.",
+  "There is still time for new friends, new places, new skills, and new favourite memories.",
+  "Please remember that one rejection cannot measure everything you have to offer.",
+  "You don't have to be everyone's favourite person. Just be someone you can live happily as.",
+  "I hope you never mistake being exhausted for being unsuccessful.",
+  "Call me if you want to go through our old photos one by one and remember every little detail.",
+  "You are allowed to feel proud of yourself even when you still have a long way to go.",
+  "You can take life seriously without taking every little thing personally.",
+  "If you're having trouble believing in yourself, let me believe in you until you can again.",
+  "You deserve to experience life beyond the things you are currently worried about.",
+  "Not everything needs to be fixed tonight. Some things can wait until you have more energy.",
+  "You are growing in ways that may not be visible yet. Keep going.",
+  "You can make a new choice tomorrow. You are not trapped by the choices you made yesterday.",
+  "I hope you let yourself be loved without feeling that you need to be impressive first.",
+  "Remember how we always found something to laugh about? I hope we never lose that.",
+  "You are capable of building a life that feels good from the inside, not just one that looks good from the outside.",
+  "If you feel like you have disappointed yourself, take a breath and decide what you need next. You can repair things.",
+  "You don't need to have a perfect attitude to make progress. You just need to keep showing up when you can.",
+  "You are allowed to let people help you carry things.",
+  "I hope today gives you one little reason to feel hopeful about tomorrow.",
+  "There is a whole world outside the problem that is taking up all your thoughts right now.",
+  "Even if the next step feels small, take it. Small steps can lead to big changes.",
+  "You don't have to be happy about everything to be hopeful about your life.",
+  "Please never forget that you can always call me, even if it is the middle of a terrible day.",
+  "You are allowed to make room for joy before all your responsibilities are finished.",
+  "I hope you remember that you are still worthy of good things when you are tired, confused, or struggling.",
+  "Some of the most important progress happens quietly, when nobody is watching.",
+  "You can trust yourself to learn from what happens next.",
+  "If you need a reset, take a shower, put on something comfortable, and let the day start over.",
+  "There is no need to punish yourself for being human.",
+  "You can be proud of your resilience and still wish things had been easier.",
+  "Remember, you are not required to turn pain into something productive right away.",
+  "You have the right to want a life that feels peaceful, exciting, meaningful, or all three.",
+  "I hope you keep giving yourself reasons to look forward to the future.",
+  "When you feel like you're not enough, remember that you don't have to be everything to everyone.",
+  "You can be uncertain about the details and certain that you deserve a good life.",
+  "One day, we will be old and watching these same videos, complaining about how young we looked.",
+  "You are allowed to take a chance on yourself.",
+  "If something is weighing on you, send me a voice note. You don't have to organise your thoughts first.",
+  "Even if things are not okay right now, that doesn't mean they will never be okay again.",
+  "You have not missed every opportunity. There are still doors you haven't even seen yet.",
+  "I hope you remember that you can always begin again with more wisdom than before.",
+  "You don't have to be fearless to build something beautiful.",
+  "Take a moment to notice something good around you today. Let it count.",
+  "You are allowed to feel both proud of how far you have come and nervous about what comes next.",
+  "If you need comfort, choose comfort. You don't have to turn every hard moment into a challenge.",
+  "I hope you never stop believing that better days are possible, even when you cannot see them yet.",
+  "Whatever happens today, please be on your own side.",
+  "You deserve the same compassion on your worst day that you receive on your best day.",
+  "You are more than one chapter, one decision, one relationship, or one mistake.",
+  "Call me when you want to laugh until we forget what we were upset about.",
+  "The next version of your life doesn't need to look like anyone else's.",
+  "You can start small, move slowly, and still get somewhere meaningful.",
+  "Remember that it is okay to ask, 'Can you just listen?' You don't always need solutions.",
+  "I hope you have the courage to choose what is right for you, even when it is not the easiest choice.",
+  "You are allowed to take a break from worrying about things you cannot control.",
+  "Sometimes the answer is to keep trying. Sometimes it is to rest. Learn to give yourself both.",
+  "There is no perfect way to grow up. We are all learning as we go.",
+  "If you feel like you're not making progress, remember that healing and growth aren't always easy to measure.",
+  "You deserve to celebrate the person you are today, not just the person you hope to become.",
+  "Keep the memories that make you smile close. They are little reminders of how much life you have lived.",
+  "I hope you never feel that you have to go through a difficult time quietly just to seem strong.",
+  "You are allowed to make your life softer, slower, and happier.",
+  "Whatever you need today, I hope you give yourself permission to need it.",
+  "You have so many more memories to make. This is nowhere near the end of our story.",
+  "If you are doubting yourself today, remember that doubt is a feeling, not a verdict.",
+  "You don't have to fix your entire life to make today a little better.",
+  "You can learn something from the past without living there.",
+  "Please remember that the people who love you want the real version of you, not just the polished one.",
+  "A bad outcome does not automatically mean you made a bad decision. Sometimes you can do your best and still get an unexpected result.",
+  "I hope you keep choosing hope, not because everything is guaranteed to work out, but because there is still so much worth trying for.",
+  "You are allowed to be proud of how you handled something, even if the outcome wasn't what you wanted.",
+  "If the day has been long, let yourself have an easy evening. Tomorrow can have its own plans.",
+  "You are not falling behind by taking care of yourself.",
+  "I hope you never forget that you have a sister who is always interested in your stories, your worries, and your random updates.",
+  "One day, we'll look back at this age and realise how much was still ahead of us.",
+  "You don't have to have everything together to deserve to feel good about yourself.",
+  "Whatever life brings, I hope you remember that you are not alone in it.",
+  "You can always text me 'bad day' and let me take it from there.",
+  "The hard part of the story is not necessarily the end of the story.",
+  "You are allowed to feel hopeful without knowing exactly how things will turn out.",
+  "Please don't forget to give yourself credit for trying again after something hurt.",
+  "Your life can be meaningful even in seasons when nothing exciting seems to be happening.",
+  "If you feel stuck, you don't need a dramatic breakthrough. You might just need one small change.",
+  "You deserve to be spoken to kindly, especially by yourself.",
+  "I hope you keep discovering new things that make you happy, no matter how old we get.",
+  "There is no shame in taking longer than you expected to get where you want to go.",
+  "You are allowed to ask for help and still be an independent person.",
+  "Even when you cannot control the outcome, you can choose how gently you treat yourself along the way.",
+  "Remember that one day you will have a whole collection of new memories that you haven't even imagined yet.",
+  "If you need me today, I am here. If you need me tomorrow, I will be here then, too.",
+  "You can do difficult things without doing them perfectly.",
+  "I hope you never forget how much love there is in the ordinary little things we do for each other.",
+  "You don't have to know exactly where you are going to keep moving in a direction that feels right.",
+  "You are allowed to let go of the pressure to make every year of your life extraordinary.",
+  "Even if everything feels uncertain, you can still take care of yourself in this moment.",
+  "If you need a reminder of our childhood, open the gallery and prepare to be humbled by our fashion choices.",
+  "I hope you remember that being a good person includes being good to yourself.",
+  "You can start over without pretending the past never happened.",
+  "You have the right to rest, the right to grow, and the right to change.",
+  "Please don't confuse a slow season with a wasted one.",
+  "If something is making you anxious, let's talk it through instead of letting it grow bigger in your head.",
+  "You don't have to know the answer today. Give yourself time to think.",
+  "I hope you have people who make ordinary moments feel safe and special.",
+  "You are still becoming. There is no need to rush the process.",
+  "Remember that you can always come back to the things that make you feel grounded.",
+  "No matter how grown up we get, I will always want to hear about the little things that happen to you.",
+  "You deserve a life with room for ambition, rest, laughter, and love.",
+  "Even if this season is difficult, it is still only one season.",
+  "You can be gentle with yourself and still be determined.",
+  "I hope you keep trusting that you can figure things out as you go.",
+  "When life gets overwhelming, remember to pause before you decide that everything is wrong.",
+  "You are allowed to feel better before every problem has been solved.",
+  "If you need a little encouragement, consider this your reminder that you are capable of more than you think.",
+  "Your best days are not all behind you. There is so much more to experience.",
+  "You don't have to be okay every minute to know that you will be okay again.",
+  "I hope you keep choosing the people and places where you can breathe freely.",
+  "If you are tired of being strong, you can be tired with me. You don't have to pretend.",
+  "You can take the pressure off today and still care about your future.",
+  "One small kind thing you do for yourself today matters more than you think.",
+  "You are allowed to be excited about something even if it seems silly to someone else.",
+  "Remember, we have survived every awkward phase, every ridiculous haircut, and every dramatic childhood crisis.",
+  "If you don't know what to do next, start by being kind to yourself.",
+  "You deserve to look forward to your own life.",
+  "I hope you keep making choices that feel honest to who you are.",
+  "You can be a little lost and still be on your way.",
+  "Nothing about a difficult day takes away the good things that are still possible for you.",
+  "You have people who care about you more than you realise. I am definitely one of them.",
+  "Take today as it comes. You don't have to borrow trouble from tomorrow.",
+  "You are allowed to stop, breathe, and try again when you feel ready.",
+  "I hope you remember how much you have already learned about getting through hard things.",
+  "The goal isn't to never struggle. It's to know you can reach out when you do.",
+  "You can be proud of yourself for choosing to keep going, even when progress feels invisible.",
+  "If you need to talk about something a hundred times, you can talk to me about it a hundred times.",
+  "You deserve to experience a day that feels light. I hope today is one of those days.",
+  "Whatever you are working through, you do not have to solve it all by yourself.",
+  "You can make a new memory today, however small. Life is still happening.",
+  "I hope you always remember that you can call your sister for absolutely no reason at all.",
+  "You have so much more to offer the world than your ability to get things done.",
+  "It is okay if your progress is not obvious to anyone else yet.",
+  "You are allowed to be proud of your journey even if it doesn't look like someone else's.",
+  "When things go wrong, remember that you still have choices, support, and time to work things out.",
+  "I hope you look at yourself with more kindness today than you did yesterday.",
+  "One day at a time is not a small way to live. It is how every life is lived.",
+  "You don't have to have a perfect day to find a moment worth remembering.",
+  "Remember that the person you are today deserves love just as much as the person you are becoming.",
+  "If you feel like giving up on yourself, please pause and give yourself a little more time.",
+  "You are allowed to want a fresh start without being ashamed of where you began.",
+  "Call me when you need to remember that you are more than whatever is bothering you.",
+  "I hope you keep finding reasons to laugh, even when life isn't especially funny.",
+  "You don't need to earn the right to have a peaceful evening.",
+  "Some days will be hard. That does not make your life a hard life forever.",
+  "You are allowed to do things differently from how you did them before.",
+  "If you need a reminder of how far we've come, let's sit together and watch our old videos.",
+  "You can trust that you will keep learning, even when you don't feel ready.",
+  "You are worth caring for even when you don't feel particularly impressive.",
+  "There is always something you can do next, even if it is just rest and try again tomorrow.",
+  "I hope you remember to be proud of yourself for the things you once found difficult.",
+  "Whatever happens, you can tell me about it. You never have to make it sound okay first.",
+  "You are allowed to build a life that fits you, not the life other people pictured for you.",
+  "I hope today is a reminder that you have made it through hard things before and you can seek help through the hard things ahead.",
+  "When you need a little hope, remember that the story is still unfolding.",
+  "You don't have to turn every setback into a comeback overnight.",
+  "Give yourself permission to be a person who is learning, resting, changing, and trying.",
+  "If the world is too loud, call me. We can find a little quiet together.",
+  "I hope you never forget that some of our best memories began with absolutely no plan.",
+  "You are allowed to have a good day even when there are unresolved things in your life.",
+  "The things you are worried about today may look very different after some sleep and a little perspective.",
+  "You can always take the next step when you are ready. You don't have to run.",
+  "I am grateful that out of all the people in the world, I got to grow up with you.",
+  "Please keep believing that you deserve kindness, including from yourself.",
+  "If you feel like nothing is working, take a breath. You can reassess and try another way.",
+  "You are not defined by how well you handle every single difficult moment.",
+  "Life is full of unexpected turns. Some of them will lead you somewhere wonderful.",
+  "You can be proud of the person you are even while you are working on becoming a better version of yourself.",
+  "Remember that you don't need to wait until you're struggling badly to call me.",
+  "I hope you find comfort in knowing that you can start fresh more than once.",
+  "No matter what age we are, I will always want to hear your side of the story.",
+  "You have the right to take your time with things that matter to you.",
+  "When you feel discouraged, look back at the things that once felt impossible and are now part of your life.",
+  "You are allowed to be happy about small progress. Small progress is still your progress.",
+  "If things aren't okay today, let that be true without assuming they will never be okay.",
+  "I hope you keep making room for the silly, spontaneous things that make our lives ours.",
+  "You are loved on the days you shine and on the days you barely have the energy to get dressed.",
+  "There is no need to solve every uncertainty before you let yourself enjoy something good.",
+  "You can ask for a hug, a distraction, advice, or company. You don't have to figure out which one perfectly.",
+  "Please remember that you are allowed to take up space in the lives of the people who love you.",
+  "Whatever happens, we can talk about it. We can laugh about it later, too, if it ever gets there.",
+  "You don't have to be the same person you were last year. Growing means things change.",
+  "I hope you remember that there is no single right way to make a life.",
+  "You have so many little joys ahead of you that you haven't met yet.",
+  "If you need me, call. If you don't know what to say, just start with hello.",
+  "You can be hopeful about tomorrow without pretending today wasn't hard.",
+  "You are allowed to rest before you reach the point of exhaustion.",
+  "I hope you never stop making memories with me, even when life gets busy.",
+  "You can take the things that went wrong and still make something good out of what comes next.",
+  "No matter what you are facing, you are still the same person with so much possibility ahead of you.",
+  "Remember that we are on the same team, even when we disagree about absolutely everything.",
+  "You are allowed to change your plans when you learn something new about yourself.",
+  "I hope you give yourself credit for every time you chose to try again.",
+  "You don't need to know how it all ends to take care of yourself in the middle.",
+  "If you are reading this on a difficult day, please remember: you are loved, you are allowed to rest, and you can reach out.",
+  "Let's make more memories that our future selves will laugh about. We have a lot of life left.",
+  "No matter how old we get, you can always call me, text me, send me a ridiculous video, or come sit with me.",
+  "And if you ever forget how loved you are, come find me. I'll remind you as many times as you need."
+];
+  var SPECIAL={1:"Day one. Everything starts somewhere. This started with you being born and me being unimpressed.",100:"Day 100. Somewhere there’s a photo of us from today. I hope we look ridiculous.",200:"Halfway-ish. Still love you. Still taking the bigger slice.",365:"The last slip. There are many more pages in us."};
+  var grid=document.getElementById('grid'),rl=document.getElementById('rl'),rt=document.getElementById('rt'),cnt=document.getElementById('cnt'),n=0;
+  function msg(d){
+    if(SPECIAL[d])return SPECIAL[d];
+    if(d%30===0)return "[A real memory from our year goes here.] Day "+d+".";
+    return POOL[(d*31)%POOL.length];
+  }
+    var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var START=new Date(2026,9,24); // 24 Oct 2026
+  function label(d){var t=new Date(START.getFullYear(),START.getMonth(),START.getDate()+d-1);return t.getDate()+' '+MONTHS[t.getMonth()];}
+
+  for(var d=1;d<=365;d++){(function(d){
+    var b=document.createElement('button');b.className='slip';b.textContent=label(d);b.setAttribute('aria-label','Open slip for '+label(d));
+    b.style.transform='rotate('+(((d*37)%7)-3)*0.8+'deg)';
+    b.onclick=function(){rl.textContent=label(d);rt.textContent=msg(d);if(!b.classList.contains('done')){b.classList.add('done');n++;cnt.textContent=n;}};
+    grid.appendChild(b);
+  })(d);}
+})();
+</script>
+</body>
+</html>
